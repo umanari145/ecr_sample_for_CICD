@@ -21,3 +21,6 @@ phases:
       - docker push "$REPOSITORY_URI:$IMAGE_TAG"
       - echo Zipping build artifacts...
       - zip -r output.zip ./*
+artifacts:
+  files:
+    - output.zip
