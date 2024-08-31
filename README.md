@@ -40,3 +40,5 @@ step5 ECR へのプッシュ
 docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/my-nginx-app:latest
 
 ```
+
+https://dev.classmethod.jp/articles/codepipeline-ecs-codedeploy/
