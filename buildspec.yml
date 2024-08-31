@@ -12,7 +12,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t my-nginx-app .
+      - docker-compose build --no-cache
       - docker tag my-nginx-app:$IMAGE_TAG $REPOSITORY_URI:$IMAGE_TAG
 
   post_build:
