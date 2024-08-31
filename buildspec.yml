@@ -13,11 +13,13 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t "$REPOSITORY_URI:$IMAGE_TAG" .
+      - echo "docker build -t $REPOSITORY_URI:$IMAGE_TAG"
 
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image to ECR...
       - docker push "$REPOSITORY_URI:$IMAGE_TAG"
+      - echo "docker push $REPOSITORY_URI:$IMAGE_TAG"
       - echo Zipping build artifacts...
       - zip -r output.zip ./*
