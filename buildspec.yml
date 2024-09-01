@@ -19,9 +19,8 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image to ECR...
       - docker push "$REPOSITORY_URI:$IMAGE_TAG"
-      - echo Zipping build artifacts...
-      - zip -r output.zip ./*
+      - printf "[{\"name\":\"my-nginx-app\",\"imageUri\":\"%s\"}]" $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files:
-    - output.zip
+    - imagedefinitions.json
     - appspec.yaml

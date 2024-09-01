@@ -5,7 +5,7 @@ FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 
 # カスタムのHTMLファイルをコピー
-COPY index.html .
+COPY src/index.html .
 
 # ポート80を開放
 EXPOSE 80
