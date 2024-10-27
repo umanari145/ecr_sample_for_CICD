@@ -36,3 +36,38 @@ docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/my-nginx-app:l
 ```
 
 https://dev.classmethod.jp/articles/codepipeline-ecs-codedeploy/
+
+
+
+## heroku での登録
+
+heroku自体のログイン
+```
+heroku login
+ ›   Warning: heroku update available from 9.1.0 to 9.3.2.
+heroku: Press any key to open up the browser to login or q to exit:
+
+# ここでブラウザでログイン
+
+Opening browser to https://cli-auth.heroku.com/auth/cli/browser/****Logging in... done
+Logged in as ******@xxxxxx
+
+```
+
+コンテナログイン
+```
+ heroku container:login
+Login Succeeded
+```
+
+heroku containerへの登録とpush
+```
+docker tag my-nginx-app:latest registry.heroku.com/<app-name>/web:latest
+docker push registry.heroku.com/<app-name>/web:latest
+```
+
+コンテナのリリース
+```
+heroku container:release web -a <app-name>
+```
+

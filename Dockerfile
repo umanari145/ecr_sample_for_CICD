@@ -6,9 +6,7 @@ WORKDIR /usr/share/nginx/html
 
 # カスタムのHTMLファイルをコピー
 COPY src/index.html .
-
-# ポート80を開放
-EXPOSE 80
+COPY nginx/default.conf /etc/nginx/conf.d/
 
 # Nginxを起動
 CMD ["nginx", "-g", "daemon off;"]
