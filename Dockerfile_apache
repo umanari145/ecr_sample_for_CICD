@@ -17,4 +17,4 @@ WORKDIR /var/www/html
 
 COPY src/index.html .
 
-EXPOSE 
+EXPOSE 80
