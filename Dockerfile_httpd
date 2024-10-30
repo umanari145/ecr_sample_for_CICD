@@ -1,0 +1,6 @@
+FROM httpd:alpine
+
+ADD src/index.html /usr/local/apache2/htdocs
+
+ENTRYPOINT []
+CMD sed -i -e "s/80/$PORT/g" /usr/local/apache2/conf/httpd.conf && httpd-foreground
