@@ -10,7 +10,7 @@ https://github.com/umanari145/IaCのaws_cicdのサンプルで簡易的なsource
 step1 ビルドの image の登録
 
 ```
-docker build -t my-nginx-app .
+docker build -t my-web . -f Dockerfile名 --no-cache
 
 ```
 
@@ -24,14 +24,14 @@ aws ecr get-login-password --region <your-region> | docker login --username AWS 
 step3 タグづけ
 
 ```
-docker tag my-nginx-app:latest <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/my-nginx-app:latest
+docker tag my-web:latest <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/my-web:latest
 
 ```
 
 step4 ECR へのプッシュ
 
 ```
-docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/my-nginx-app:latest
+docker push <your-account-id>.dkr.ecr.<your-region>.amazonaws.com/my-web:latest
 
 ```
 
@@ -62,7 +62,7 @@ Login Succeeded
 
 heroku containerへの登録とpush
 ```
-docker tag my-nginx-app:latest registry.heroku.com/<app-name>/web:latest
+docker tag my-web:latest registry.heroku.com/<app-name>/web:latest
 docker push registry.heroku.com/<app-name>/web:latest
 ```
 
@@ -71,3 +71,11 @@ docker push registry.heroku.com/<app-name>/web:latest
 heroku container:release web -a <app-name>
 ```
 
+deploy_to_heroku.sh・・herokuログイン後、自動デプロイするためのスクリプト
+```
+(例)
+bash deploy_to_heroku.sh my-web fm-liveworks-dev Dockerfile_apache_php2
+```
+Dockerfile_apache_php・・httpd+php7.4
+Dockerfile_httpd・・生のapacheが入っているのみ。herokuでのコンテナデプロイは成功
+Dockerfile_nginx・・生のnginxが入っているのみ。herokuでのコンテナデプロイは成功
